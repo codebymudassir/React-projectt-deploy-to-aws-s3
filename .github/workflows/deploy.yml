@@ -25,5 +25,25 @@ jobs:
       - name: install dependencies
         run: npm ci
 
+
+Deploy to aws: 
+   runs-on: ubuntu-latest
+
+  steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+
+      - name: setup nodejs
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: install dependencies
+        run: npm ci
+
       - name: build
         run: npm run build
+      
+      - name: deploy to s3
+        run: echo "Deploying to S3"
